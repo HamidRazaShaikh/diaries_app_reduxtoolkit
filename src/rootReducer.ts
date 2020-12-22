@@ -1,10 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import userReducer from './features/auth/userSlice';
 import authReducer from './features/auth/authSlice';
+import diariesReducer from './features/diary/diarySlice';
+
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    // diaries: diariesReducer,
+    diaries: diariesReducer,
     // entries: entriesReducer,
     user: userReducer,
     // editor: editorReducer,

@@ -8,6 +8,8 @@ import {
   Request,
 } from "miragejs";
 import user from "./routes/user";
+import * as diary from "./routes/diary";
+
 
 export const handleError = (error: any , message = "an error message") => {  
 
@@ -55,7 +57,9 @@ export const setupServer = (env?: string): Server => {
       this.urlPrefix = "https://diaries.app";
 
       this.post("/auth/signup", user.signup);  
-      this.post("/auth/signin", user.signin);          
+      this.post("/auth/signin", user.signin);
+      this.post("/diaries/", diary.create);  
+      this.get( '/diaries/:id')         
       
     },
   });
