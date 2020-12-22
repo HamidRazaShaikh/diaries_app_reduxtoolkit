@@ -1,0 +1,73 @@
+const { ref: ref } = useWebAnimations({
+    keyframes: {
+      background: [
+        "linear-gradient(45deg, #9BDA4E 5%, #274C6E 95%)",
+        "linear-gradient(45deg, #9BDA4E 10%, #274C6E 90%)",
+        "linear-gradient(45deg, #9BDA4E 15%, #274C6E 85%)",
+        "linear-gradient(45deg, #9BDA4E 20%, #274C6E 80%)",
+        "linear-gradient(45deg, #9BDA4E 25%, #274C6E 75%)",
+        "linear-gradient(45deg, #9BDA4E 30%, #274C6E 70%)",
+
+        "linear-gradient(45deg, #9BDA4E 25%, #274C6E 75%)",
+        "linear-gradient(45deg, #9BDA4E 20%, #274C6E 80%)",
+        "linear-gradient(45deg, #9BDA4E 15%, #274C6E 85%)",
+        "linear-gradient(45deg, #9BDA4E 10%, #274C6E 90%)",
+        "linear-gradient(45deg, #9BDA4E 5%, #274C6E 95%)",
+
+        
+
+    // ******************************************************************
+        
+        // "linear-gradient(45deg, #9BDA4E 55%, #274C6E 45%)",
+        // "linear-gradient(45deg, #9BDA4E 60%, #274C6E 40%)",
+        // "linear-gradient(45deg, #9BDA4E 65%, #274C6E 35%)",
+        // "linear-gradient(45deg, #9BDA4E 70%, #274C6E 30%)",
+        // "linear-gradient(45deg, #9BDA4E 75%, #274C6E 25%)",
+        // "linear-gradient(45deg, #9BDA4E 80%, #274C6E 20%)",
+        // "linear-gradient(45deg, #9BDA4E 85%, #274C6E 15%)",
+        // "linear-gradient(45deg, #9BDA4E 90%, #274C6E 10%)",
+        // "linear-gradient(45deg, #9BDA4E 95%, #274C6E 5%)",
+
+
+        // ******************************************************************
+    //    "linear-gradient(225deg, #9BDA4E 90%, #274C6E 10%)",
+    //     "linear-gradient(225deg, #9BDA4E 85%, #274C6E 15%)",
+    //     "linear-gradient(225deg, #9BDA4E 80%, #274C6E 20%)",
+    //     "linear-gradient(225deg, #9BDA4E 75%, #274C6E 25%)",
+    //     "linear-gradient(225deg, #9BDA4E 70%, #274C6E 30%)",
+    //     "linear-gradient(225deg, #9BDA4E 65%, #274C6E 35%)",
+    //     "linear-gradient(225deg, #9BDA4E 60%, #274C6E 40%)",
+    //     "linear-gradient(225deg, #9BDA4E 55%, #274C6E 45%)",
+    //     "linear-gradient(225deg, #9BDA4E 50%, #274C6E 50%)",
+
+    //     // ******************************************************************
+       
+    //     "linear-gradient-(225deg, #9BDA4E 45%, #274C6E 55%)",
+    //     "linear-gradient(225deg, #9BDA4E 40%, #274C6E 60%)",
+    //     "linear-gradient(225deg, #9BDA4E 35%, #274C6E 65%)",
+    //     "linear-gradient(225deg, #9BDA4E 30%, #274C6E 70%)",
+    //     "linear-gradient(225deg, #9BDA4E 25%, #274C6E 75%)",
+    //     "linear-gradient(225deg, #9BDA4E 20%, #274C6E 80%)",
+    //     "linear-gradient(225deg, #9BDA4E 15%, #274C6E 85%)",
+    //     "linear-gradient(225deg, #9BDA4E 10%, #274C6E 90%)",
+    //     "linear-gradient(225deg, #9BDA4E 5%, #274C6E 95%)",
+
+        
+        
+      ],
+    },
+    
+
+    timing: {
+      duration: 2000,
+      iterations: Infinity,
+    },
+  });
+
+
+
+id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          variant="outlined"
