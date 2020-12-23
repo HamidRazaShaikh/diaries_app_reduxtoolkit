@@ -7,15 +7,9 @@ import { useAppDispatch } from "../../store/store";
 import { useSelector } from "react-redux";
 import { RootState } from "../../rootReducer";
 import dayjs from "dayjs";
+import DiaryTile from "./diaryTile";
 
-import {
-  Grid,
-  Hidden,
-  Box,
-  Button,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Box, Button } from "@material-ui/core";
 import { addDiary } from "../../features/diary/diarySlice";
 import { setUser } from "../../features/auth/userSlice";
 
@@ -29,6 +23,22 @@ const useStyle = makeStyles((theme) => ({
     color: "#000",
     background: "#b0bec5",
   },
+
+  diaryList: {
+    height: 500,
+    overflowY: "scroll",
+    "&::-webkit-scrollbar": {
+      width: "0.2em",
+    },
+    "&::-webkit-scrollbar-track": {
+      boxShadow: "inset 0 0 10px rgba(0,0,0,0.00)",
+      webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
 }));
 
 export default function Diaries() {
@@ -40,12 +50,21 @@ export default function Diaries() {
   useEffect(() => {
     const fetchDiaries = async () => {
       if (user) {
-         console.log(http.get<null, Diary[]>(`/diaries/${user.id}`))
+        http.get<null, Diary[]>(`/diaries/${user.id}`).then((data) => {
+          if (data && data.length > 0) {
+            const sortedByUpdatedAt = data.sort((a, b) => {
+              return dayjs(b.updatedAt).unix() - dayjs(a.updatedAt).unix();
+            });
+            dispatch(addDiary(sortedByUpdatedAt));
+          }
+        });
       }
     };
 
     fetchDiaries();
   }, [dispatch, user]);
+
+  console.log(diaries);
 
   const createDiary = async () => {
     const result: any = await Swal.mixin({
@@ -104,10 +123,14 @@ export default function Diaries() {
             variant="outlined"
             onClick={createDiary}
           >
-            create new
+            create new diary
           </Button>
         </Box>
-      
+        <Box className={classes.diaryList}>
+          {diaries.map((diary, index) => (
+            <DiaryTile key={index} diary={diary} />
+          ))}
+        </Box>
       </Grid>
     </div>
   );

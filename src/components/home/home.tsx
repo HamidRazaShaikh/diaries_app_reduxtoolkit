@@ -16,7 +16,7 @@ import {
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
-    padding : 2,
+    padding : 0,
     display: "flex",
     background: "linear-gradient(90deg, #1a237e , #b2ebf2)",
     alignItems: "center",
@@ -28,8 +28,8 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: 10,
     borderColor: '#1a237e',
     borderWidth: 4,
-    padding : 5,
-    margin: 2,
+    padding : 2.5,
+    margin: 1,
     height: "95vh",
     background : '#fafafa',
   },
