@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core";
+import { IconButton, makeStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { Entry, User } from "../../interfaces/interfaces";
 import { RootState } from "../../rootReducer";
@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 import { useAppDispatch } from "../../store/store";
 import { setEntry } from "../../features/entry/entry";
 import http from "../../services/api";
+import EditIcon from "@material-ui/icons/Edit";
+
 
 import {
   Grid,
@@ -53,10 +55,7 @@ export default function Users() {
   const id = entriesShow;
 
   const showEntries = () => {
-
-   
     if (entries && id != null) {
-
       http
         .get<null, { entries: Entry[] }>(`/diaries/entries/${id}`)
         .then(({ entries: _entries }) => {
@@ -70,10 +69,7 @@ export default function Users() {
     }
   };
 
-  console.log(entries)
-
-
-
+  console.log(entries);
 
   return (
     <div className={classes.root}>
@@ -114,15 +110,17 @@ export default function Users() {
           </Button>
           <List>
             {entries.map((entry, index) => (
-              <React.Fragment>
-                <ListItem button key={index}>
-                <ListItemText primary={entry.title} />
-              </ListItem>
+              <React.Fragment key={index}>
+                <ListItem button >
+                  <ListItemText primary={entry.title} />
+                  <ListItemText primary={entry.title} />
+                  {/* <IconButton aria-label="edit">
+                    <EditIcon fontSize="small" />
+                  </IconButton> */}
+                </ListItem>
 
                 <Divider component="li" />
-
               </React.Fragment>
-              
             ))}
           </List>
         </Box>
