@@ -25,7 +25,8 @@ const useStyle = makeStyles((theme) => ({
   },
 
   diaryList: {
-    height: 500,
+    
+    height: 500,   
     overflowY: "scroll",
     "&::-webkit-scrollbar": {
       width: "0.2em",
@@ -56,15 +57,16 @@ export default function Diaries() {
               return dayjs(b.updatedAt).unix() - dayjs(a.updatedAt).unix();
             });
             dispatch(addDiary(sortedByUpdatedAt));
+
           }
         });
       }
     };
 
     fetchDiaries();
-  }, [dispatch, user]);
+  }, [dispatch, user, diaries]);
 
-  console.log(diaries);
+ 
 
   const createDiary = async () => {
     const result: any = await Swal.mixin({

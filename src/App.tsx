@@ -19,6 +19,7 @@ function App() {
           <Route path="/">
             <Suspense fallback={<p>Loading...</p>}>
               {isSignIn ? <Home /> : <Auth />}              
+            
             </Suspense>
           </Route>
         </Switch>

@@ -1,27 +1,30 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {Diary} from '../../interfaces/interfaces';
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Diary } from "../../interfaces/interfaces";
 
 const diaries = createSlice({
+  name: "diaries",
+  initialState: [] as Diary[],
+  reducers: {
+    addDiary(state, { payload }: PayloadAction<Diary[]>) {
+      const diariesToSave = payload.filter((diary) => {
+        return state.findIndex((item) => item.id === diary.id) === -1;
+      });
+      state.push(...diariesToSave);
+    },
 
-    name : 'diaries',
-    initialState: [] as Diary[],
-    reducers: {
+    updateDiary(state, { payload }: PayloadAction<Diary>) {
+      const { id } = payload;
 
-        addDiary (state , {payload}: PayloadAction<Diary[]>) {
+      const diaryIndex = state.findIndex((item) => item.id === id);
 
-            const diariesTosave = payload.filter((diary)=> {
-                return state.findIndex( (item)=> item.id === diary.id) === -1
-            });
+      if (diaryIndex !== -1) {
+        state.splice(diaryIndex, 1, payload);
+      }
+    },
 
-            state.push( ...diariesTosave)
+    
+  },
+});
 
-
-        }
-
-    }
-}) ;
-
-
-export const {addDiary} = diaries.actions;
+export const { addDiary, updateDiary } = diaries.actions;
 export default diaries.reducer;

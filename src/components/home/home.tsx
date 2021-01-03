@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 import Diaries from './diary';
-import Entry from './entry';
+import EntryEditor from './entry';
 import Users from './users';
 
 import {
@@ -49,7 +49,7 @@ export default function Home() {
         </Grid>
         <Grid item md={6} container alignItems="center">
           <Box className={classes.container}>
-            <Entry/>
+            <EntryEditor/>
           </Box>
         </Grid>
         <Grid item md={3} container alignItems="center">

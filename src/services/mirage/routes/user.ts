@@ -15,6 +15,7 @@ const signin = (schema : any , req : Request)  : AuthResponse | Response => {
   const {username , password} = JSON.parse( req.requestBody);
   const user = schema.users.findBy({username});
   const token = generateToken();
+  
 
   if (!user){
     return handleError( null , 'No user with that username exists')
