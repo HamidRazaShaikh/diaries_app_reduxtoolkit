@@ -9,7 +9,6 @@ import { setEntry } from "../../features/entry/entry";
 import http from "../../services/api";
 import EditIcon from "@material-ui/icons/Edit";
 
-
 import {
   Grid,
   Hidden,
@@ -24,6 +23,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import { setCanEdit, setCurrentlyEditing } from "../../features/entry/editor";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -44,6 +44,24 @@ const useStyle = makeStyles((theme) => ({
   inline: {
     display: "inline",
   },
+
+  entryList : {
+
+    height : 350,
+    overflowY  : 'scroll',
+    "&::-webkit-scrollbar": {
+      width: "0.2em",
+    },
+    "&::-webkit-scrollbar-track": {
+      boxShadow: "inset 0 0 10px rgba(0,0,0,0.00)",
+      webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+
+  }
 }));
 
 export default function Users() {
@@ -108,15 +126,18 @@ export default function Users() {
           >
             show entries
           </Button>
-          <List>
+          <List  className = {classes.entryList}>
             {entries.map((entry, index) => (
               <React.Fragment key={index}>
-                <ListItem button >
+                
+                <ListItem button onClick={() => {
+                dispatch(setCurrentlyEditing(entry));
+                dispatch( setCanEdit(false));
+              
+              }}>
                   <ListItemText primary={entry.title} />
-                  <ListItemText primary={entry.title} />
-                  {/* <IconButton aria-label="edit">
-                    <EditIcon fontSize="small" />
-                  </IconButton> */}
+
+                 
                 </ListItem>
 
                 <Divider component="li" />

@@ -19,6 +19,8 @@ import { useAppDispatch } from "../../store/store";
 import { TextField } from "@material-ui/core";
 import { updateDiary } from "../../features/diary/diarySlice";
 import { show} from '../../features/entry/entryshow';
+import { withStyles} from '@material-ui/core/styles';
+
 import { setActiveDiaryId, setCanEdit, setCurrentlyEditing} from "../../features/entry/editor";
 interface Props {
   diary: Diary;
@@ -34,10 +36,49 @@ const useStyles = makeStyles({
   },
 });
 
+
+const BootstrapButton = withStyles({
+  root: {
+    boxShadow: 'none',
+    textTransform: 'none',
+    fontSize: 16,
+    padding: '6px 12px',
+    border: '1px solid',
+    lineHeight: 1.5,
+    backgroundColor: '#0063cc',
+    borderColor: '#0063cc',
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:hover': {
+      backgroundColor: '#0069d9',
+      borderColor: '#0062cc',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#0062cc',
+      borderColor: '#005cbf',
+    },
+    '&:focus': {
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+    },
+  },
+})(Button);
+
 const DiaryTile: FC<Props> = (props) => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
-  const [diary, setDiary] = useState(props.diary);
+  const [diary, setDiary] = useState(props.diary); 
   const [isEditing, setIsEditing] = useState(false);
   const { editor } = useSelector((state: RootState) => state);
   const totalEntries = props.diary?.entryIds?.length;
@@ -59,8 +100,14 @@ const DiaryTile: FC<Props> = (props) => {
 
   return (
     <div>
-      <Card className={classes.root}  onClick = {()=>dispatch(show(diary.id as string))}>        
-        <CardActionArea>
+      <BootstrapButton disableRipple>
+
+      <Card className={classes.root}  onClick = {()=>{
+        
+        dispatch(show(diary.id as string))
+        
+        }}>        
+       
           <CardContent>
             {isEditing ? (
               <div>
@@ -84,15 +131,7 @@ const DiaryTile: FC<Props> = (props) => {
             ) : (
               <div >
                 <Typography variant="h6">{diary.title}</Typography>
-                <Button color="primary" onClick = {()=> {
-                  dispatch(setCanEdit(true))
-                  dispatch(setActiveDiaryId(diary.id as string))
-                  dispatch(setCurrentlyEditing(null))
-                  dispatch(show(diary.id as string))
-                  
-                }
-
-                }>Add new entry</Button>
+                
               </div>
             )}
 
@@ -105,19 +144,36 @@ const DiaryTile: FC<Props> = (props) => {
                   {diary.createdAt}
                 </Typography>
 
-                <IconButton
-                  aria-label="edit"
-                  onClick={() => setIsEditing(true)}
-                >
-                  <EditIcon fontSize="small" />
-                </IconButton><br/>
+               
 
               
               </Box>
             </div>
           </CardContent>
-        </CardActionArea>
+
+          <CardActions>
+              <Button size="small"  onClick = {()=> {
+                  dispatch(setCanEdit(true))
+                  dispatch(setActiveDiaryId(diary.id as string))
+                  dispatch(setCurrentlyEditing(null))
+                  dispatch(show(diary.id as string))
+                  
+                }
+
+                }>add new entry</Button>
+              <IconButton
+                  aria-label="edit"
+                  onClick={() => setIsEditing(true)}
+                >
+                  <EditIcon fontSize="small" />
+                </IconButton>
+            </CardActions>
+
+       
       </Card>
+
+      </BootstrapButton>
+     
     </div>
   );
 };
